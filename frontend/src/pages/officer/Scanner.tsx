@@ -11,8 +11,8 @@ import { verificationService } from "../../services/coreServices";
 
 const schema = z.object({
   qr_code: z.string().min(3),
-  verified_by_id: z.coerce.number().optional(),
-  gate_number: z.coerce.number().min(1),
+  verified_by_id: z.number().optional(),
+  gate_number: z.number().min(1),
 });
 
 type FormValues = z.infer<typeof schema>;
@@ -46,9 +46,9 @@ export default function Scanner() {
               </select>
             </label>
             <label className="grid gap-2 text-sm font-semibold text-slate-600">Gate Number
-              <input className="rounded-lg border border-mf-border p-3" type="number" {...register("gate_number")} />
+            <input className="rounded-lg border border-mf-border p-3" type="number" {...register("gate_number", { valueAsNumber: true })} />
             </label>
-            <input type="hidden" {...register("verified_by_id")} />
+            <input type="hidden" {...register("verified_by_id", { valueAsNumber: true })} />
             <Button disabled={scan.isPending}>Verify Ticket</Button>
           </form>
           {scan.data ? <div className="mt-5 rounded-xl bg-slate-50 p-4"><StatusBadge status={scan.data.status} /><p className="mt-2 text-sm text-slate-600">{scan.data.message}</p></div> : null}

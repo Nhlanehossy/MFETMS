@@ -12,8 +12,8 @@ import { paymentService, ticketService } from "../../services/coreServices";
 import { money } from "../../utils/format";
 
 const schema = z.object({
-  match_id: z.coerce.number().min(1),
-  category_id: z.coerce.number().min(1),
+  match_id: z.number().min(1),
+  category_id: z.number().min(1),
   seat_number: z.string().optional(),
   provider: z.string().min(1),
 });
@@ -73,12 +73,12 @@ export default function Checkout() {
         <Card className="grid gap-4 p-5">
           <CardHeader title="Ticket Selection" />
           <label className="grid gap-2 text-sm font-semibold text-slate-600">Match
-            <select className="rounded-lg border border-mf-border p-3" {...register("match_id")}>
+            <select className="rounded-lg border border-mf-border p-3" {...register("match_id", { valueAsNumber: true })}>
               {data.matches.map((match) => <option key={match.id} value={match.id}>{match.label} - {match.date}</option>)}
             </select>
           </label>
           <label className="grid gap-2 text-sm font-semibold text-slate-600">Category
-            <select className="rounded-lg border border-mf-border p-3" {...register("category_id")}>
+            <select className="rounded-lg border border-mf-border p-3" {...register("category_id", { valueAsNumber: true })}>
               {(selectedMatch?.ticket_prices ?? []).map((price) => <option key={price.ticket_category?.id} value={price.ticket_category?.id}>{price.ticket_category?.name} - {money.format(price.price)}</option>)}
             </select>
           </label>

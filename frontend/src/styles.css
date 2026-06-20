@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+:root {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #1e1e1e;
+  background: #f5f7f6;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+@theme {
+  --color-mf-green: #006b3f;
+  --color-mf-gold: #f9a825;
+  --color-mf-red: #d32f2f;
+  --color-mf-blue: #1976d2;
+  --color-mf-ink: #1e1e1e;
+  --color-mf-border: #e5e7eb;
+}
+
+.page-shell {
+  @apply space-y-6;
+}
+
+.page-header {
+  @apply flex flex-col gap-4 md:flex-row md:items-center md:justify-between;
+}
+
+.page-title {
+  @apply text-2xl font-bold tracking-tight text-mf-ink md:text-3xl;
+}
+
+.page-kicker {
+  @apply text-xs font-bold uppercase tracking-normal text-mf-green;
+}
+
+.dashboard-grid {
+  @apply grid gap-4 md:grid-cols-2 xl:grid-cols-4;
+}
+
+.content-grid {
+  @apply grid gap-5 xl:grid-cols-[1.35fr_.65fr];
+}
+
+.table-cell-muted {
+  @apply text-sm text-slate-500;
+}
+
+.hero-pattern {
+  background:
+    radial-gradient(circle at 20% 20%, rgba(249, 168, 37, 0.22), transparent 26%),
+    linear-gradient(135deg, #006b3f 0%, #0a3b2a 58%, #10241f 100%);
+}

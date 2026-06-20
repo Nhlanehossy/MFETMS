@@ -1,0 +1,1 @@
+export { competitionService } from "./coreServices";

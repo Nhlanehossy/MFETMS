@@ -32,6 +32,7 @@ from verification import views as verification_views
 
 urlpatterns = [
     path('', site.website),
+    path('healthz', site.healthz),
     path('assets/<path:path>', site.frontend_asset),
     path('admin/', admin.site.urls),
     path('api/auth/me/', account_views.me),

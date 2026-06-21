@@ -1,7 +1,7 @@
 from pathlib import Path
 
 from django.conf import settings
-from django.http import FileResponse, Http404
+from django.http import FileResponse, Http404, JsonResponse
 from django.views.static import serve
 
 
@@ -9,7 +9,11 @@ FRONTEND_DIR = settings.BASE_DIR.parent / "frontend"
 FRONTEND_DIST = FRONTEND_DIR / "dist"
 
 
-def website(request):
+def healthz(request):
+    return JsonResponse({"status": "ok"})
+
+
+def website(request, path=""):
     index_path = FRONTEND_DIST / "index.html" if (FRONTEND_DIST / "index.html").exists() else FRONTEND_DIR / "index.html"
     if not index_path.exists():
         raise Http404("Frontend index.html was not found.")

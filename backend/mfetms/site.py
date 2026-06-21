@@ -1,7 +1,7 @@
 from pathlib import Path
 
 from django.conf import settings
-from django.http import FileResponse, Http404, JsonResponse
+from django.http import FileResponse, Http404, HttpResponse, JsonResponse
 from django.views.static import serve
 
 
@@ -14,9 +14,17 @@ def healthz(request):
 
 
 def website(request, path=""):
-    index_path = FRONTEND_DIST / "index.html" if (FRONTEND_DIST / "index.html").exists() else FRONTEND_DIR / "index.html"
+    index_path = FRONTEND_DIST / "index.html"
     if not index_path.exists():
-        raise Http404("Frontend index.html was not found.")
+        if not path:
+            return JsonResponse({
+                "status": "ok",
+                "service": "MFETMS API",
+                "frontend": "Deploy the React frontend on Vercel.",
+            })
+        if path == "favicon.ico":
+            return HttpResponse(status=204)
+        raise Http404("Frontend build was not found.")
     return FileResponse(index_path.open("rb"), content_type="text/html")
 
 

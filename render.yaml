@@ -4,7 +4,7 @@ services:
     runtime: python
     rootDir: backend
     buildCommand: bash build.sh
-    startCommand: gunicorn mfetms.wsgi:application --bind 0.0.0.0:$PORT
+    startCommand: bash start.sh
     envVars:
       - key: DEBUG
         value: "False"

@@ -9,7 +9,7 @@ Use either the included `render.yaml` blueprint or create a manual Render Web Se
 - Root Directory: `backend`
 - Runtime: `Python`
 - Build Command: `bash build.sh`
-- Start Command: `gunicorn mfetms.wsgi:application --bind 0.0.0.0:$PORT`
+- Start Command: `bash start.sh`
 
 Create a Render PostgreSQL database and set these backend environment variables:
 
